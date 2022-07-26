@@ -1,0 +1,8 @@
+#Virtualbox 
+cd /media/cdrom0
+sh VBoxLinuxAdditions.run
+
+#Site:
+https://book.hacktricks.xyz/welcome/getting-started-in-hacking
+https://gtfobins.github.io/
+https://github.com/danielmiessler/SecLists

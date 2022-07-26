@@ -6,3 +6,4 @@ sh VBoxLinuxAdditions.run
 https://book.hacktricks.xyz/welcome/getting-started-in-hacking
 https://gtfobins.github.io/
 https://github.com/danielmiessler/SecLists
+https://github.com/payloadbox/sql-injection-payload-list

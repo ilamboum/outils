@@ -9,3 +9,4 @@ https://github.com/danielmiessler/SecLists
 https://github.com/payloadbox/sql-injection-payload-list
 
 find /usr/ -name "*cc1*"
+https://exiftool.org/ apt-get install exiftool

@@ -8,6 +8,7 @@ https://gtfobins.github.io/
 https://github.com/danielmiessler/SecLists
 https://github.com/payloadbox/sql-injection-payload-list
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md#checklists
+https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
 
 find /usr/ -name "*cc1*"
 https://exiftool.org/ apt-get install exiftool

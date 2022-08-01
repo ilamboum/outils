@@ -45,3 +45,5 @@ sudo apt-get install php-curl
 sudo apt-get install exiftool
 pip3 install cryptography
 
+
+Linux Ubuntu 3.2.0-23- -> https://systemweakness.com/offsec-proving-ground-sumo-9c73436f71f4 c0w

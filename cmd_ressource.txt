@@ -73,6 +73,7 @@ Sar, FunboxRookie, Gaara, OnSystemShellDredd, FunboxEasyEnum, SunsetDecoy, Solst
 
 #Getting
 	- Exploit-db : 47204
+	https://www.exploit-db.com/exploits/47984
 	- John
 	- Id_rsa
 	- SSH Bruteforce

@@ -27,7 +27,7 @@ Ctrl + Z
 stty raw -echo; fg
 (sur ça machine pour voir la taille d'abord (stty -a)
 puis prendre les tailles obtenues dans la commandes  :
-stty rows 37 columns 158
+stty rows 61 columns 116
 ```
 
 Si ca ne veut pas fonctioner essayer ce lien :

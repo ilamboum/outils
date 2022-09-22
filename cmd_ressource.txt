@@ -53,7 +53,8 @@ export PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6:$PATH
 
 #Linux Basic:
 ssh -p 61000 -i id_rsa hannah@192.168.172.130
-```bash
+```
+bash
 python3 -c 'import pty;pty.spawn("/bn/bash")'
 export TERM=xterm
 
